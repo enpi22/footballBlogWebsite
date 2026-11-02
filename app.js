@@ -12,7 +12,7 @@ const contactContent = "Mail me at reddyharshit8@gmail.com, and I do not know if
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/blogDB");
 
 const postSchema = {
   title: String,
@@ -123,6 +123,6 @@ app.get("/posts/:postId", async function(req, res){
     }
 });
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+const PORT = process.env.PORT || 3000;\napp.listen(PORT, function() {
+  console.log("Server started on port " + PORT);
 });
