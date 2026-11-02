@@ -1,24 +1,44 @@
 <%- include("partials/header"); -%>
-  <h1>Home</h1>
-  <p>
-    <%= startingContent %>
-  </p>
-
-
-  <div class="blog-container">
-    <% posts.forEach(function(post){ %>
-
-      <h3>
-        <%=post.title%>
-      </h3>
-      <p>
-        <%=post.content.substring(0, 10) + " ..." %>
-          <a href="/posts/<%=post._id%>">Read More</a>
-      </p>
-  
-  
-      <% }) %>
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="eyebrow-line"></span> THE BEAUTIFUL GAME, IN WORDS</p>
+    <h1>Football is more<br>than <em>90 minutes.</em></h1>
+    <p class="hero-description">Match thoughts, stories, opinions and the moments that make us fall in love with the game again.</p>
+    <a class="text-link" href="#latest">Explore the stories <span>↓</span></a>
   </div>
-
-
-      <%- include("partials/footer"); -%>
+  <div class="hero-art" aria-label="Abstract football pitch illustration">
+    <div class="pitch">
+      <span class="pitch-line halfway"></span><span class="pitch-circle"></span><span class="pitch-box left"></span><span class="pitch-box right"></span>
+      <span class="pitch-ball">✳</span>
+    </div>
+    <div class="hero-note"><span>EST.</span><strong>20</strong><span>23</span></div>
+    <div class="hero-caption">A fan's point of view<br>on the world's game.</div>
+  </div>
+</section>
+<section class="latest-section" id="latest">
+  <div class="section-heading">
+    <div><p class="eyebrow">FROM THE TOUCHLINE</p><h2>Latest stories<span class="accent-dot">.</span></h2></div>
+    <span class="post-count"><%= posts.length %> <%= posts.length === 1 ? 'STORY' : 'STORIES' %></span>
+  </div>
+  <% if (posts.length === 0) { %>
+    <div class="empty-state"><span class="empty-icon">✳</span><h3>The first whistle is yours.</h3><p>No stories have been published yet. Sign in to write the first one.</p><a class="button button-dark" href="/user">Open editor <span>↗</span></a></div>
+  <% } else { %>
+    <div class="story-grid">
+      <% posts.forEach(function(post, index) { %>
+        <article class="story-card">
+          <a class="story-art art-<%= index % 3 %>" href="/posts/<%= post._id %>" aria-label="Read <%= post.title %>">
+            <span class="art-label">FIELD NOTES / <%= String(index + 1).padStart(2, '0') %></span>
+            <span class="art-symbol"><%= index % 3 === 0 ? '✳' : (index % 3 === 1 ? '◉' : '↗') %></span>
+            <span class="art-bottom">WEEKLY FOOTBALL</span>
+          </a>
+          <div class="story-meta"><span>THE CONVERSATION</span><span>•</span><span>5 MIN READ</span></div>
+          <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
+          <p class="story-excerpt"><%= post.content.length > 150 ? post.content.substring(0, 150) + '…' : post.content %></p>
+          <a class="read-link" href="/posts/<%= post._id %>">Read story <span>↗</span></a>
+        </article>
+      <% }); %>
+    </div>
+  <% } %>
+</section>
+<section class="quote-strip"><p>“Some people think football is a matter of life and death. I assure you, it's much more important than that.”</p><span>— BILL SHANKLY</span></section>
+<%- include("partials/footer"); -%>

@@ -1,26 +1,12 @@
-<head>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<form action="/user" method="post">
-    <div class="imgcontainer">
-      <img src="/images/avatar.png" alt="Avatar" class="avatar">
-    </div>
-  
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-  
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-  
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn" onclick="window.location.href = '/';">Cancel</button>
-      <span class="psw">NO FORGOT PASSWORD. ONLY I HAVE ACCESS</a></span>
-    </div>
+<%- include("partials/header"); -%>
+<section class="login-page">
+  <div class="login-aside"><p class="eyebrow">THE EDITOR'S ROOM</p><h1>Every great story<br>starts with <em>a thought.</em></h1><p>Sign in to add your voice to the conversation.</p></div>
+  <form class="login-form" action="/user" method="post">
+    <p class="eyebrow">WELCOME BACK</p><h2>Editor sign in</h2>
+    <label for="uname">Username</label><input id="uname" type="text" name="uname" placeholder="Your username" autocomplete="username" required>
+    <label for="psw">Password</label><input id="psw" type="password" name="psw" placeholder="Your password" autocomplete="current-password" required>
+    <button class="button button-dark" type="submit">Continue <span>↗</span></button>
+    <a class="back-link" href="/">← Return to the journal</a>
   </form>
+</section>
+<%- include("partials/footer"); -%>

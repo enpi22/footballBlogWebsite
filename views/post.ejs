@@ -1,6 +1,10 @@
 <%- include("partials/header"); -%>
-
-  <h1><%=title%></h1>
-  <p><%=content%></p>
-
+<article class="article-page">
+  <a class="back-link" href="/">← Back to all stories</a>
+  <p class="eyebrow">THE WEEKLY FOOTBALL JOURNAL</p>
+  <h1><%= title %></h1>
+  <div class="article-rule"><span>FIELD NOTES</span><span>THE BEAUTIFUL GAME</span></div>
+  <div class="article-body"><p><%= content %></p></div>
+  <a class="button button-dark" href="/">More stories <span>↗</span></a>
+</article>
 <%- include("partials/footer"); -%>
